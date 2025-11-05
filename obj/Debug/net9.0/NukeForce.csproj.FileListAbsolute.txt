@@ -1,0 +1,14 @@
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.GeneratedMSBuildEditorConfig.editorconfig
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.AssemblyInfoInputs.cache
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.AssemblyInfo.cs
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.csproj.CoreCompileInputs.cache
+/home/x1l8sn7/Projects/gen-test/NukeForce/bin/Debug/net9.0/NukeForce
+/home/x1l8sn7/Projects/gen-test/NukeForce/bin/Debug/net9.0/NukeForce.deps.json
+/home/x1l8sn7/Projects/gen-test/NukeForce/bin/Debug/net9.0/NukeForce.runtimeconfig.json
+/home/x1l8sn7/Projects/gen-test/NukeForce/bin/Debug/net9.0/NukeForce.dll
+/home/x1l8sn7/Projects/gen-test/NukeForce/bin/Debug/net9.0/NukeForce.pdb
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.dll
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/refint/NukeForce.dll
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.pdb
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.genruntimeconfig.cache
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/ref/NukeForce.dll

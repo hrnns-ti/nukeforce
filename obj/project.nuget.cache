@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ET8AmDMkh6A=",
+  "success": true,
+  "projectFilePath": "/home/x1l8sn7/Projects/gen-test/NukeForce/NukeForce.csproj",
+  "expectedPackageFiles": [
+    "/home/x1l8sn7/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.9/microsoft.aspnetcore.app.ref.9.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}
