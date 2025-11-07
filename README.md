@@ -36,6 +36,7 @@ It exhaustively tests all possible password combinations without relying on word
 3. **Parallel Execution**: Multiple threads process different blocks simultaneously
 4. **Dynamic Chunking**: Threads automatically pick up new blocks as they complete
 5. **No Overlap Guarantee**: Index-based distribution ensures no duplicate testing
+6. **Would Use IP Spoof**: Soon, it can use IP Spoof to make it more deadly :D
 
 ## License
 
