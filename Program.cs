@@ -53,7 +53,6 @@ class BruteForcePerLength {
     }
 
     static async Task Main(string[] args) {
-        // Ambil argumen dari command line
         if (args.Length < 2) {
             Console.WriteLine("Usage: dotnet run -- length blocks\nContoh: dotnet run -- 4 16");
             return;
