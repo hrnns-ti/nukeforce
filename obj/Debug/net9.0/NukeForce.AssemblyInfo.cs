@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NukeForce")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27c9732747e5e5045003eaddfbc0a3c7392d536b")]
 [assembly: System.Reflection.AssemblyProductAttribute("NukeForce")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NukeForce")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

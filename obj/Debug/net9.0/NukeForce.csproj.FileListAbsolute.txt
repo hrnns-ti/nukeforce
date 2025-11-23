@@ -12,3 +12,4 @@
 /home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.pdb
 /home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.genruntimeconfig.cache
 /home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/ref/NukeForce.dll
+/home/x1l8sn7/Projects/gen-test/NukeForce/obj/Debug/net9.0/NukeForce.sourcelink.json
